@@ -1,0 +1,10 @@
+{
+  "name": "example-plugin",
+  "apis": [
+    {
+      "path": "/api/example",
+      "method": "get",
+      "role": ["ADMIN", "USER"]
+    }
+  ]
+}
