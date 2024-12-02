@@ -2,10 +2,9 @@ const Koa = require('koa');
 const bodyParser = require('koa-bodyparser');
 const Router = require('koa-router');
 const winston = require('winston');
-const Scanner = require('./scanner');
-const config = require('./config');
-const sqlite3 = require('sqlite3');
+const scan = require('scan-analysis-lib');
 const path = require('path');
+const config = require('./config');
 
 
 const app = new Koa();
@@ -95,8 +94,7 @@ router.get('/webhook', async (ctx) => {
     ctx.body = 'OK';
     logger.info('Received valid request, starting analysis...');
     // 启动分析流程
-    const scanner = new Scanner();
-    scanner.runAnalysis(repos).finally(()=>{
+    scan(repos).finally(()=>{
       isRunning = false;
     });
   }catch(e){
