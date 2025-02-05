@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:../database.db"
+}
+
+model Application {
+  id             Int       @id @default(autoincrement())
+  deptCode       String    @default("") @map("dept_code")
+  appName        String    @default("") @map("app_name")
+  appTag         String    @default("") @map("app_tag")
+  appDesc        String    @default("") @map("app_desc")
+  appRepo        String    @default("") @map("app_repo")
+  appBranch      String    @default("") @map("app_branch")
+  appOwner       String    @default("") @map("app_owner")
+  appConfig      String?   @map("app_config")
+  appStatus      Int       @default(1) @map("app_status")
+  isDelete       Int       @default(0) @map("is_delete")
+  
+  @@map("demo_application")
+}
+
+model Department {
+  id             Int       @id @default(autoincrement())
+  deptName       String    @default("") @map("dept_name")
+  deptCode       String    @default("") @map("dept_code")
+  appIds         String    @default("") @map("app_ids")
+  isDelete       Int       @default(0) @map("is_delete")
+
+  @@map("demo_dept")
+}
+
+model Plugin {
+  id             Int       @id @default(autoincrement())
+  pluginName     String    @default("") @map("plugin_name")
+  pluginDesc     String    @default("") @map("plugin_desc")
+  pluginStatus   Int       @default(0) @map("plugin_status")
+  pluginConfig   String?   @map("plugin_config")
+  isDelete       Int       @default(0) @map("is_delete")
+
+  @@map("demo_plugin")
+}
+
+model Task {
+  id             Int       @id @default(autoincrement())
+  taskCode       String    @default("") @map("task_code")
+  appIds         String    @default("") @map("app_ids")
+  pluginIds      String    @default("") @map("plugin_ids")
+  taskStatus     Int       @default(0) @map("task_status")
+  taskLog        String?   @map("task_log")
+  taskDate       DateTime  @default(dbgenerated("'1970-01-01 08:00:01'")) @map("task_date")
+  costTime       Int       @default(0) @map("cost_time")
+  isDelete       Int       @default(0) @map("is_delete")
+  results        Result[]
+
+  @@map("demo_task")
+}
+
+model Result {
+  id             Int       @id @default(autoincrement())
+  taskId         Int       @map("task_id")
+  taskDate       DateTime  @default(dbgenerated("'1970-01-01 08:00:01'")) @map("task_date")
+  costTime       Int       @default(0) @map("cost_time")
+  appId          Int       @default(0) @map("app_id")
+  resultJson     String?   @map("result_json")
+  resultLog      String?   @map("result_log")
+  commitId       String    @default("") @map("commit_id")
+  isDelete       Int       @default(0) @map("is_delete")
+  task           Task      @relation(fields: [taskId], references: [id])
+
+  @@map("demo_result")
+}

@@ -4,18 +4,30 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "initDbFile": "npx prisma generate && npx prisma db push",
+    "initData": "node script/init.js",
+    "start": "node analysis/index.js",
+    "runner": "node runner/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^6.0.1",
     "axios": "^1.7.8",
+    "joi": "^17.13.3",
     "koa": "^2.15.3",
     "koa-bodyparser": "^4.4.1",
     "koa-router": "^13.0.1",
-    "scan-analysis-lib": "^0.7.0",
+    "scan-analysis-lib": "^1.5.0",
+    "uuid": "^11.0.3",
     "winston": "^3.14.2"
   },
-  "packageManager": "pnpm@9.6.0"
+  "packageManager": "pnpm@9.6.0",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "devDependencies": {
+    "prisma": "^6.0.1"
+  }
 }
