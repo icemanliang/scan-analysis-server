@@ -93,7 +93,6 @@ class ResultController {
         taskStatus: 2, 
         taskLog: task_log,
         costTime: cost_time,
-        lastUpdateTime: new Date()
     });
     logger.info('update task status success.');
     ctx.body = {

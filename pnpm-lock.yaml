@@ -27,8 +27,11 @@ importers:
         specifier: ^13.0.1
         version: 13.0.1
       scan-analysis-lib:
-        specifier: ^1.1.0
-        version: 1.1.0(@babel/core@7.26.0)
+        specifier: ^1.5.0
+        version: 1.5.0(@babel/core@7.26.0)
+      simple-git:
+        specifier: ^3.27.0
+        version: 3.27.0
       uuid:
         specifier: ^11.0.3
         version: 11.0.3
@@ -2219,8 +2222,8 @@ packages:
   safer-buffer@2.1.2:
     resolution: {integrity: sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==}
 
-  scan-analysis-lib@1.1.0:
-    resolution: {integrity: sha512-mkD8RcrxXDYm5dRKrXczORSDSFGJvSYd/wdiSp1sAflfd7BDDTjX3TgR1YGK/UEHgIxgMRrH0Obytj12tTv8qg==}
+  scan-analysis-lib@1.5.0:
+    resolution: {integrity: sha512-FBwL7HAC3X85HO6Yg/V9jv04OqPOJBYR4YY9Z6ILGL7DGfTAy20Qw0/sc+tVVDQ7xI8NIga2ewg3D6KI4c4gsA==}
     hasBin: true
 
   semver@5.7.2:
@@ -5112,7 +5115,7 @@ snapshots:
 
   safer-buffer@2.1.2: {}
 
-  scan-analysis-lib@1.1.0(@babel/core@7.26.0):
+  scan-analysis-lib@1.5.0(@babel/core@7.26.0):
     dependencies:
       '@babel/eslint-parser': 7.25.9(@babel/core@7.26.0)(eslint@8.57.1)
       '@babel/parser': 7.26.2
