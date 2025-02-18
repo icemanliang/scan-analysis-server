@@ -1,12 +1,14 @@
 # scan-analysis-server
 scan-analysis-server
 
-### init db
+### step1 : init db
 pnpm run initDbFile
+
+### step2(optional) : init data
 pnpm run initData
 
-### start server
+### step3 : start server
 pnpm run start
 
-### start runner
+### step4 : start runner
 pnpm run runner

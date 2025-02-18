@@ -19,7 +19,7 @@
     "koa": "^2.15.3",
     "koa-bodyparser": "^4.4.1",
     "koa-router": "^13.0.1",
-    "scan-analysis-lib": "^1.5.0",
+    "scan-analysis-lib": "^2.0.1",
     "simple-git": "^3.27.0",
     "uuid": "^11.0.3",
     "winston": "^3.14.2"

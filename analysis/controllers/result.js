@@ -1,7 +1,8 @@
 const ResultModel = require('../models/result');
 const TaskModel = require('../models/task');
 const logger = require('../logger');
-
+const { sendEmail, sendBot } = require('../notice');
+const config = require('../config');
 class ResultController {
   // 获取单应用单日期结果
   async getAppResult(ctx) {
@@ -94,6 +95,21 @@ class ResultController {
         taskLog: task_log,
         costTime: cost_time,
     });
+    // 发送邮件通知
+    if (config.emailNotice) {
+      await sendEmail(
+        task.notify_users,
+        '巡检任务完成通知', 
+        `任务: ${task_id} 已完成，耗时: ${cost_time} 秒。`
+      );
+    }
+    // 发送Bot通知
+    if (config.botNotice) {
+      await sendBot(
+        '巡检任务完成通知',
+        `任务: ${task_id} 已完成，耗时: ${cost_time} 秒。`
+      );
+    }
     logger.info('update task status success.');
     ctx.body = {
       code: '0',

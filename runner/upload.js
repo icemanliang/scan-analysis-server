@@ -24,7 +24,9 @@ const uploadResult = (result) => {
     headers: {
       'Content-Type': contentType,
       'x-token': accessToken
-    }
+    },
+    maxContentLength: Infinity,     // 解决上传文件过大问题
+    maxBodyLength: Infinity         // 解决上传文件过大问题  
   }).then((res) => {
     logger.info('upload result msg:', res.data.msg);
     return res.data;
