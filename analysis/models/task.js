@@ -1,6 +1,7 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 const uuid = require('uuid');
+const { unzipJson } = require('../middlewares/gizp');
 
 class TaskModel {
   async create(data) {
@@ -66,7 +67,7 @@ class TaskModel {
         };
       }) || [],
       task_status: item.taskStatus,
-      task_log: item.taskLog || '',
+      task_log: unzipJson(item.taskLog) || '',
       task_date: item.taskDate,
       cost_time: item.costTime || 0
     }));

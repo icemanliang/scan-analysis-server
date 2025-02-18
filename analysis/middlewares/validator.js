@@ -9,7 +9,7 @@ const validate = (schema) => async (ctx, next) => {
     ctx.status = 400;
     ctx.body = {
       code: 400,
-      message: err.message
+      msg: err.message
     };
   }
 };

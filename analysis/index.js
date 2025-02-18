@@ -19,7 +19,7 @@ app.use(require('./middlewares/error-handler'));
 
 // 注册路由
 router.use('/api/application', applicationRouter.routes());
-router.use('/api/dept', departmentRouter.routes());
+router.use('/api/department', departmentRouter.routes());
 router.use('/api/plugin', pluginRouter.routes());
 router.use('/api/task', taskRouter.routes());
 router.use('/api/result', resultRouter.routes());

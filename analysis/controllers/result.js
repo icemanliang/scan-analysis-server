@@ -12,9 +12,9 @@ class ResultController {
     const result = await ResultModel.getAppResult(query);
     
     ctx.body = {
-      code: '0',
+      code: 0,
       msg: 'OK',
-      info: result
+      data: result
     };
   }
 
@@ -26,9 +26,9 @@ class ResultController {
     const result = await ResultModel.getAppPropsTrend(query);
     
     ctx.body = {
-      code: '0',
+      code: 0,
       msg: 'OK', 
-      info: result
+      data: result
     };
   }
 
@@ -40,9 +40,9 @@ class ResultController {
     const result = await ResultModel.getDeptPropsTrend(query);
     
     ctx.body = {
-      code: '0',
+      code: 0,
       msg: 'OK',
-      info: result
+      data: result
     };
   }
 
@@ -57,27 +57,27 @@ class ResultController {
     if (!task) {
       logger.error('task not found.');
       ctx.body = {
-        code: '1001',
+        code: 1001,
         msg: 'task not found.',
-        info: null
+        data: null
       };
       return;
     }
     if (task.task_status !== 1) {
       logger.error('task status is not 1.');
       ctx.body = {
-        code: '1002',
+        code: 1002,
         msg: 'task status is not 1.',
-        info: null
+        data: null
       };
       return;
     }
     if (task.task_code !== task_code) {
       logger.error('task code not match.');
       ctx.body = {
-        code: '1003',
+        code: 1003,
         msg: 'task code not match.',
-        info: null
+        data: null
       };
       return;
     }
@@ -112,9 +112,9 @@ class ResultController {
     }
     logger.info('update task status success.');
     ctx.body = {
-      code: '0',
+      code: 0,
       msg: 'OK',
-      info: null
+      data: null
     };
   }
 }

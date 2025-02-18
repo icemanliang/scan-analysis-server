@@ -17,9 +17,9 @@ class PluginController {
     await PluginModel.create(createData);
     
     ctx.body = {
-      code: '0',
+      code: 0,
       msg: 'OK',
-      info: null
+      data: null
     };
   }
 
@@ -30,9 +30,9 @@ class PluginController {
     const result = await PluginModel.list(query);
     
     ctx.body = {
-      code: '0',
+      code: 0,
       msg: 'OK',
-      info: result
+      data: result
     };
   }
 
@@ -50,9 +50,9 @@ class PluginController {
     await PluginModel.update(id, updateData);
     
     ctx.body = {
-      code: '0',
+      code: 0,
       msg: 'OK',
-      info: null
+      data: null
     };
   }
 
@@ -63,9 +63,9 @@ class PluginController {
     await PluginModel.remove(id);
     
     ctx.body = {
-      code: '0',
+      code: 0,
       msg: 'OK',
-      info: null
+      data: null
     };
   }
 }

@@ -29,9 +29,9 @@ class TaskController {
     }
     // 返回结果
     ctx.body = {
-      code: '0',
+      code: 0,
       msg: 'OK',
-      info: null
+      data: null
     };
   }
 
@@ -42,9 +42,9 @@ class TaskController {
     const result = await TaskModel.list(query);
     
     ctx.body = {
-      code: '0',
+      code: 0,
       msg: 'OK',
-      info: result
+      data: result
     };
   }
 
@@ -55,9 +55,9 @@ class TaskController {
     await TaskModel.remove(id);
     
     ctx.body = {
-      code: '0',
+      code: 0,
       msg: 'OK',
-      info: null
+      data: null
     };
   }
 
@@ -68,9 +68,9 @@ class TaskController {
     const task = await TaskModel.getById(id);
     
     ctx.body = {
-      code: '0',
+      code: 0,
       msg: 'OK',
-      info: task
+      data: task
     };
   }
 
@@ -81,9 +81,9 @@ class TaskController {
     await TaskModel.update(id, { taskStatus: -1 });
     
     ctx.body = {
-      code: '0',
+      code: 0,
       msg: 'OK',
-      info: null
+      data: null
     };
   }
 }

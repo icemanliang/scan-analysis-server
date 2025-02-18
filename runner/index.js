@@ -39,7 +39,7 @@ router.post('/task/run', async (ctx) => {
   if (token !== accessToken) {
     ctx.status = 403;
     ctx.body = {
-      code: '1001',
+      code: 1001,
       msg: 'Forbidden'
     };
     logger.error('Received request with invalid token.');
@@ -50,7 +50,7 @@ router.post('/task/run', async (ctx) => {
   if (isRunning) {  
     ctx.status = 500;
     ctx.body = {
-      code: '1002',
+      code: 1002,
       msg: 'Analysis already running'
     };
     logger.error('Received request while analysis is already running.');
@@ -64,7 +64,7 @@ router.post('/task/run', async (ctx) => {
   }catch(e){
     ctx.status = 510;
     ctx.body = {
-      code: '1003',
+      code: 1003,
       msg: 'error get config.'
     };
     logger.error('error get config.');
@@ -73,7 +73,7 @@ router.post('/task/run', async (ctx) => {
   if(!taskConfig){
     ctx.status = 520;
     ctx.body = {
-      code: '1004',
+      code: 1004,
       msg: 'error get config.'
     };
     logger.error('error get config.');
@@ -92,7 +92,7 @@ router.post('/task/run', async (ctx) => {
   }catch(e){
     ctx.status = 530;
     ctx.body = {
-      code: '1005',
+      code: 1005,
       msg: 'error delete scan-results dir.'
     };
     logger.error('error delete scan-results dir.');
@@ -103,7 +103,7 @@ router.post('/task/run', async (ctx) => {
   isRunning = true;
   ctx.status = 200;
   ctx.body = {
-    code: '0',
+    code: 0,
     msg: 'OK'
   };
   logger.info('Received task request, starting analysis...');

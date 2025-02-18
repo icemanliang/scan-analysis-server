@@ -16,9 +16,9 @@ class DepartmentController {
     await DepartmentModel.create(createData);
     
     ctx.body = {
-      code: '0',
+      code: 0,
       msg: 'OK',
-      info: null
+      data: null
     };
   }
 
@@ -29,9 +29,9 @@ class DepartmentController {
     const result = await DepartmentModel.list(query);
     
     ctx.body = {
-      code: '0',
+      code: 0,
       msg: 'OK',
-      info: result
+      data: result
     };
   }
 
@@ -49,9 +49,9 @@ class DepartmentController {
     await DepartmentModel.update(id, updateData);
     
     ctx.body = {
-      code: '0',
+      code: 0,
       msg: 'OK',
-      info: null
+      data: null
     };
   }
 
@@ -62,9 +62,9 @@ class DepartmentController {
     await DepartmentModel.remove(id);
     
     ctx.body = {
-      code: '0',
+      code: 0,
       msg: 'OK',
-      info: null
+      data: null
     };
   }
 }

@@ -21,9 +21,9 @@ class ApplicationController {
     await ApplicationModel.create(createData);
     
     ctx.body = {
-      code: '0',
+      code: 0,
       msg: 'OK',
-      info: null
+      data: null
     };
   }
 
@@ -33,9 +33,9 @@ class ApplicationController {
     const result = await ApplicationModel.list(query);
     
     ctx.body = {
-      code: '0',
+      code: 0,
       msg: 'OK',
-      info: result
+      data: result
     };
   }
 
@@ -57,9 +57,9 @@ class ApplicationController {
     await ApplicationModel.update(id, updateData);
     
     ctx.body = {
-      code: '0',
+      code: 0,
       msg: 'OK',
-      info: null
+      data: null
     };
   }
 
@@ -69,9 +69,9 @@ class ApplicationController {
     await ApplicationModel.remove(id);
     
     ctx.body = {
-      code: '0',
+      code: 0,
       msg: 'OK',
-      info: null
+      data: null
     };
   }
 }

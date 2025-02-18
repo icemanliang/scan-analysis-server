@@ -42,14 +42,14 @@ class ApplicationModel {
 
     const formattedData = data.map(item => ({
       id: Number(item.id),
-      app_name: item.name,
-      app_repo: item.repo,
-      app_branch: item.branch,
-      app_tags: item.tags?.split(',') || [],
-      app_desc: item.description,
-      app_owner: item.owner,
-      app_config: item.config,
-      app_status: Boolean(item.status)
+      app_name: item.appName,
+      app_repo: item.appRepo,
+      app_branch: item.appBranch,
+      app_tags: item.appTag?.split(',') || [],
+      app_desc: item.appDesc,
+      app_owner: item.appOwner,
+      app_config: item.appConfig,
+      app_status: Boolean(item.appStatus)
     }));
 
     return {
