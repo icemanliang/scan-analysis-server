@@ -24,7 +24,7 @@ const getConfig = async (taskId) => {
       'x-token': accessToken
     }
   }).then((res) => {
-    return res.data;
+    return res.data.data;
   }).catch((error) => {
     console.error('upload failed:', error);
   });
@@ -107,6 +107,7 @@ router.post('/task/run', async (ctx) => {
     msg: 'OK'
   };
   logger.info('Received task request, starting analysis...');
+  // console.log('taskConfig:', JSON.stringify(taskConfig));
   
   startScan(taskConfig).then((scanResult)=>{
     startUpload(taskId, taskCode, taskConfig, scanResult);

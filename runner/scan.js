@@ -7,7 +7,7 @@ const { pullCode } = require('./pull');
 const logger = require('./logger');
 // 拉取代码
 const getCodes = async (taskConfig) => {
-  const repoConfigs = taskConfig.info.apps.map(app => ({
+  const repoConfigs = taskConfig.apps.map(app => ({
     repo: app.repo,
     branch: app.branch,
     localPath: path.join(__dirname, '../', resourcesDir)
@@ -54,14 +54,14 @@ const generateScanConfig = (taskConfig) => {
   return {
     resultDir: scanResultDir,
     maxWorkerNum,
-    sources: taskConfig.info.apps.map(app => ({
+    sources: taskConfig.apps.map(app => ({
       appName: app.name,
       baseDir: path.join(__dirname, '../', resourcesDir, `${app.repo.split('/').pop().replace('.git', '')}`),
       codeDir: parseJsObject(app.config).codeDir,
       buildDir: parseJsObject(app.config).buildDir,
       aliasConfig: parseJsObject(app.config).aliasConfig
     })),
-    plugins: taskConfig.info.plugins.map(plugin => ({
+    plugins: taskConfig.plugins.map(plugin => ({
       name: plugin.name,
       config: parseJsObject(plugin.config)
     }))
@@ -70,7 +70,7 @@ const generateScanConfig = (taskConfig) => {
 
 // 写入日志(或上传日志)
 const writeLog = (taskConfig) => {
-  const log = taskConfig.info.apps.map(app => ({
+  const log = taskConfig.apps.map(app => ({
     appName: app.name,
     commitId: getCommitId(app.name, app.repo.split('/').pop().replace('.git', ''))
   }));
@@ -108,10 +108,11 @@ const writeLog = (taskConfig) => {
 
 // 开始扫描
 const startScan = async (taskConfig) => {
+  logger.info('start scan task');
   try {
     // 1. 拉取代码
     const pullResult = await getCodes(taskConfig);
-    if (!pullResult) return;  // 拉取代码失败，退出
+    if (!pullResult) throw new Error('pull code failed, task stop');  // 拉取代码失败，退出
     // 2. 扫描配置
     const scanConfig = generateScanConfig(taskConfig);
     // console.log('scan config:', JSON.stringify(scanConfig));
@@ -121,7 +122,7 @@ const startScan = async (taskConfig) => {
     writeLog(taskConfig);
     return scanResult;
   } catch (error) {
-    logger.error('task failed:', error);
+    logger.error('task failed:', error.stack);
   }
 }
 

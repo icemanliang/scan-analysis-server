@@ -7,7 +7,7 @@
     "initDbFile": "npx prisma generate && npx prisma db push",
     "initData": "node script/init.js",
     "start": "node analysis/index.js",
-    "runner": "node runner/index.js"
+    "runner": "node --max-old-space-size=8192 runner/index.js"
   },
   "keywords": [],
   "author": "",

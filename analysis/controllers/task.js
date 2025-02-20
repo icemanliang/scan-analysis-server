@@ -22,17 +22,31 @@ class TaskController {
         'x-token': accessToken
       }
     });
-    logger.info('runner response msg:', res.data.msg);
+    // logger.info('runner response code:', res.data.code);
     // 更新任务状态
-    if (res.data.code == '0') {
+    if (res.data.code == 0) {
       await TaskModel.update(taskId, { taskStatus: 1 });
+      // 返回结果
+      ctx.body = {
+        code: 0,
+        msg: 'create task success',
+        data: null
+      };
+    } else if (res.data.code == 1002) {
+      // 返回结果
+      ctx.body = {
+        code: 1002,
+        msg: 'Analysis task already running',
+        data: null
+      };
+    } else {
+      // 返回结果
+      ctx.body = {
+        code: 1010,
+        msg: 'task create failed',
+        data: null
+      };
     }
-    // 返回结果
-    ctx.body = {
-      code: 0,
-      msg: 'OK',
-      data: null
-    };
   }
 
   async list(ctx) {

@@ -28,7 +28,7 @@ const uploadResult = (result) => {
     maxContentLength: Infinity,     // 解决上传文件过大问题
     maxBodyLength: Infinity         // 解决上传文件过大问题  
   }).then((res) => {
-    logger.info('upload result msg:', res.data.msg);
+    logger.info('upload result success');
     return res.data;
   }).catch((error) => {
     logger.error('upload failed:', error);
@@ -36,16 +36,16 @@ const uploadResult = (result) => {
 }
 // 获取appId
 const getAppId = (config, name) => {
-  return config.info.apps.find(app => app.name === name).id;
+  return config.apps.find(app => app.name === name).id;
 }
 // 获取repoName
 const getRepoName = (config, name) => {
-  const repo = config.info.apps.find(app => app.name === name).repo;
+  const repo = config.apps.find(app => app.name === name).repo;
   return repo.split('/').pop().replace('.git', '');
 }
 // 压缩结果
 const zip = (filePath) => {
-  const zipBuffer = zlib.gzipSync(fs.readFileSync(filePath, 'utf8'));
+  const zipBuffer = zlib.gzipSync(fs.readFileSync(filePath, 'utf8'), { level: 9 });
   return zipBuffer.toString('base64');
 }
 // 格式结果

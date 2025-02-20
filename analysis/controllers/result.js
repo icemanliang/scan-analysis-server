@@ -4,7 +4,7 @@ const logger = require('../logger');
 const { sendEmail, sendBot } = require('../notice');
 const config = require('../config');
 class ResultController {
-  // 获取单应用单日期结果
+  // 获取单应用单批次分析结果
   async getAppResult(ctx) {
     logger.info('get app result.');
     const query = ctx.request.body;
@@ -18,12 +18,12 @@ class ResultController {
     };
   }
 
-  // 获取单应用属性趋势
-  async getAppPropsTrend(ctx) {
-    logger.info('get app props trend.');
+  // 获取单应用多日期结果趋势信息
+  async getAppTrend(ctx) {
+    logger.info('get app trend.');
     const query = ctx.request.body;
     // console.log(query);
-    const result = await ResultModel.getAppPropsTrend(query);
+    const result = await ResultModel.getAppTrend(query);
     
     ctx.body = {
       code: 0,
@@ -32,12 +32,26 @@ class ResultController {
     };
   }
 
-  // 获取多部门属性趋势
-  async getDeptPropsTrend(ctx) {
-    logger.info('get dept props trend.');
+  // 获取部门单批次分析结果
+  async getDeptResult(ctx) {
+    logger.info('get dept result.');
     const query = ctx.request.body;
     // console.log(query);
-    const result = await ResultModel.getDeptPropsTrend(query);
+    const result = await ResultModel.getDeptResult(query);
+    
+    ctx.body = {
+      code: 0,
+      msg: 'OK',
+      data: result
+    };
+  }
+
+  // 获取部门多日期结果趋势信息
+  async getDeptTrend(ctx) {
+    logger.info('get dept trend.');
+    const query = ctx.request.body;
+    // console.log(query);
+    const result = await ResultModel.getDeptTrend(query);
     
     ctx.body = {
       code: 0,

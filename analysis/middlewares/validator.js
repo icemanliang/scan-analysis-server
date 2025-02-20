@@ -138,23 +138,39 @@ const resultSchema = {
   app: Joi.object({
     app_id: Joi.number().required(),
     task_id: Joi.number().required(),
-    keys: Joi.array().items(Joi.string())
+    keys: Joi.array().items(Joi.object({
+      name: Joi.string().required(),
+      props: Joi.array().items(Joi.string())
+    }))
   }),
 
-  appPropsTrend: Joi.object({
+  appTrend: Joi.object({
     app_id: Joi.number().required(),
-    start_date: Joi.string().required(),
-    end_date: Joi.string().required(),
-    keys: Joi.array().items(Joi.string()),
-    props: Joi.array().items(Joi.string())
+    start_date: Joi.date().required(),
+    end_date: Joi.date().required(),
+    keys: Joi.array().items(Joi.object({
+      name: Joi.string().required(),
+      props: Joi.array().items(Joi.string())
+    }))
   }),
 
-  deptPropsTrend: Joi.object({
+  dept: Joi.object({
+    dept_ids: Joi.array().items(Joi.number()).required(),
+    task_id: Joi.number().required(),
+    keys: Joi.array().items(Joi.object({
+      name: Joi.string().required(),
+      props: Joi.array().items(Joi.string())
+    }))
+  }),
+
+  deptTrend: Joi.object({
     dept_ids: Joi.array().items(Joi.number()).required(),
     start_date: Joi.date().required(),
     end_date: Joi.date().required(),
-    props: Joi.array().items(Joi.string()),
-    keys: Joi.array().items(Joi.string())
+    keys: Joi.array().items(Joi.object({
+      name: Joi.string().required(),
+      props: Joi.array().items(Joi.string())
+    }))
   }),
 
   sync: Joi.object({
@@ -205,8 +221,9 @@ const validator = {
 
   result: {
     app: validate(resultSchema.app),
-    appPropsTrend: validate(resultSchema.appPropsTrend),
-    deptPropsTrend: validate(resultSchema.deptPropsTrend),
+    appTrend: validate(resultSchema.appTrend),
+    dept: validate(resultSchema.dept),
+    deptTrend: validate(resultSchema.deptTrend),
     sync: validate(resultSchema.sync)
   }
 };
